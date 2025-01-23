@@ -25,6 +25,7 @@ Route::get('/', function () {
 // api=============
 
 Route::post('user-registeration',[UserController::class, 'UserRegistration']);
+Route::post('user-login',[UserController::class, 'UserLogin']);
 
 
 
