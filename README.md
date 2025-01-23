@@ -2,12 +2,12 @@ USER MODUALS: </br>
 Requests: </br>
     1. Registration = post request = http://127.0.0.1:8000/user-registeration </br>
     2. Login = post request = http://127.0.0.1:8000/user-login </br>
-    3. Send OTP = post request = http://127.0.0.1:8000/send-otp
-    4. Verify OTP = post request = http://127.0.0.1:8000/verify-otp
-    5. Reset Password = post request = http://127.0.0.1:8000/reset-password
+    3. Send OTP = post request = http://127.0.0.1:8000/send-otp </br>
+    4. Verify OTP = post request = http://127.0.0.1:8000/verify-otp </br>
+    5. Reset Password = post request = http://127.0.0.1:8000/reset-password </br>
 
-JSON:
-Registration : 
+JSON: </br>
+Registration :  </br>
 {
     "firstName":"Amrito",
     "lastName":"Bosu",
@@ -16,24 +16,24 @@ Registration :
     "password":"123"
 }
 
-Login : 
+Login :  </br>
 {
     "email":"amritobosu0@gmail.com",
     "password":"123"
 }
 
-Send OTP : 
+Send OTP : </br>
 {
     "email":"amritobosu0@gmail.com"
 }
 
-Verify OTP : 
+Verify OTP : </br>
 {
    "email":"amritobosu0@gmail.com",
    "otp":"9733"
 }
 
-Reset Password :
+Reset Password : </br>
 {
     "password":"xyz"
 }
