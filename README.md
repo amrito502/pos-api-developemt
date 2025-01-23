@@ -1,7 +1,7 @@
-USER MODUALS:
-Requests:
-    1. Registration = post request = http://127.0.0.1:8000/user-registeration
-    2. Login = post request = http://127.0.0.1:8000/user-login
+USER MODUALS: </br>
+Requests: </br>
+    1. Registration = post request = http://127.0.0.1:8000/user-registeration </br>
+    2. Login = post request = http://127.0.0.1:8000/user-login </br>
     3. Send OTP = post request = http://127.0.0.1:8000/send-otp
     4. Verify OTP = post request = http://127.0.0.1:8000/verify-otp
     5. Reset Password = post request = http://127.0.0.1:8000/reset-password
