@@ -36,14 +36,30 @@ class JWTToken{
     }
 
 
-    public static function VerifyToken($token):string{
+    // public static function VerifyToken($token):string{
 
-        try{
+    //     try{
+    //         $key = env('JWT_KEY');
+    //         $decoded = JWT::decode($token, new Key($key, 'HS256'));
+    //         return $decoded->userEmail;
+    //     }
+    //     catch(\Exception $e){
+    //         return 'unauthorized';
+    //     }
+    // }
+
+    public static function VerifyToken($token): string {
+        try {
+            if (empty($token)) {
+                throw new \Exception('Token is missing or invalid');
+            }
+
             $key = env('JWT_KEY');
+
             $decoded = JWT::decode($token, new Key($key, 'HS256'));
-            return $decoded->userEmail;
-        }
-        catch(\Exception $e){
+
+            return $decoded->userEmail ?? 'unauthorized';
+        } catch (\Exception $e) {
             return 'unauthorized';
         }
     }

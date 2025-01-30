@@ -10,6 +10,26 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    // pages
+    public function LoginPage(){
+        return view('pages.auth.login-page');
+    }
+
+    public function RegistrationPage(){
+        return view('pages.auth.registration-page');
+    }
+    public function SendOtpPage(){
+        return view('pages.auth.send-otp-page');
+    }
+    public function VerifyOTPPage(){
+        return view('pages.auth.verify-otp-page');
+    }
+
+    public function ResetPasswordPage(){
+        return view('pages.auth.reset-pass-page');
+    }
+
+    // api
     public function UserRegistration(Request $request){
         try{
             User::create([
@@ -40,13 +60,13 @@ class UserController extends Controller
             ->where('password','=',$request->input('password'))
             ->count();
 
+
         if($count==1){
             $token = JWTToken::CreateToken($request->input('email'));
             return response()->json([
                 'status'=>'success',
                 'message'=> 'User Login Successfully!',
-                'token'=> $token
-             ]);
+             ])->cookie('token', $token, 60 * 24 * 30);
         }
         else{
             return response()->json([
@@ -55,6 +75,36 @@ class UserController extends Controller
              ]);
         }
      }
+
+
+    // public function UserLogin(Request $request) {
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required'
+    //     ]);
+
+    //     $user = User::where('email', $request->input('email'))
+    //                 ->where('password', $request->input('password'))
+    //                 ->first();
+
+    //     if ($user) {
+    //         $token = JWTToken::CreateToken($user->email); // Generate JWT token
+
+    //         return response()->json([
+    //             'status' => 'success',
+    //             'message' => 'User Login Successfully!',
+    //             'token' => $token
+    //         ])->cookie('token', $token, 60 * 24 * 30);
+    //     }
+
+    //     return response()->json([
+    //         'status' => 'failed',
+    //         'message' => 'Unauthorized!',
+    //     ], 401);
+    // }
+
+
+
 
 
      public function SendOTPCode(Request $request){
@@ -97,8 +147,7 @@ class UserController extends Controller
             return response()->json([
                 'status'=>'success',
                 'message'=> 'OTP Verification Successfully!',
-                'token'=> $token
-             ]);
+             ],200)->cookie('token', $token, 60 * 24 * 30);
         }
         else{
             return response()->json([
@@ -124,6 +173,11 @@ class UserController extends Controller
                 'message'=> 'Somethings Went Wrong!'
              ]);
         }
+     }
+
+
+     public function UserLogout(Request $request){
+        return redirect('/userLogin')->cookie('token', '', -1);
      }
 
 
