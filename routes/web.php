@@ -35,14 +35,14 @@ Route::post('reset-password',[UserController::class, 'ResetPassword'])->middlewa
 
 
 // ============user-logout=============
-Route::get('logout',[UserController::class, 'UserLogout']);
+Route::get('logout',[UserController::class, 'UserLogout'])->middleware([TokenVerificationMiddleware::class]);
 // page route
 Route::get('/',[HomeController::class,'HomePage']);
 Route::get('/userLogin',[UserController::class,'LoginPage']);
 Route::get('/userRegistration',[UserController::class,'RegistrationPage']);
 Route::get('/sendOtp',[UserController::class,'SendOtpPage']);
 Route::get('/verifyOtp',[UserController::class,'VerifyOTPPage']);
-Route::get('/resetPassword',[UserController::class,'ResetPasswordPage']);
-Route::get('/dashboard',[DashboardController::class,'DashboardPage']);
+Route::get('/resetPassword',[UserController::class,'ResetPasswordPage'])->middleware([TokenVerificationMiddleware::class]);
+Route::get('/dashboard',[DashboardController::class,'DashboardPage'])->middleware([TokenVerificationMiddleware::class]);
 
 // =========================
