@@ -25,6 +25,14 @@ class CategoryController extends Controller
     }
 
 
+    function CategoryByID(Request $request){
+        $category_id=$request->input('id');
+        $user_id=$request->header('id');
+        return Category::where('id',$category_id)->where('user_id',$user_id)->first();
+    }
+
+
+
     public function CategoryUpdate(Request $request){
         $category_id = $request->input('id');
         $user_id = $request->header('id');

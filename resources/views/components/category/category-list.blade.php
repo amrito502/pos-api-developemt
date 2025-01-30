@@ -57,13 +57,25 @@ async function getList() {
         tableList.append(row)
     });
 
-    tableData.DataTable(
-        {
-            "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "All"]]
-        }
-    );
+
+    $('.editBtn').on('click', async function () {
+        let id= $(this).data('id');
+        await FillUpUpdateForm(id)
+        $("#update-modal").modal('show');
 
 
+    })
+
+    $('.deleteBtn').on('click',function () {
+        let id= $(this).data('id');
+        $("#delete-modal").modal('show');
+        $("#deleteID").val(id);
+    })
+
+    new DataTable('#tableData',{
+        order:[[0,'asc']],
+        lengthMenu:[5,10,15,20,30]
+    });
 
 }
 
